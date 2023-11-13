@@ -97,12 +97,12 @@ Add the following view to your `apptwo` under `views.py`:
 # apptwo/views.py
 from django.http import HttpResponse
 
-def picture_detail(request, category):
-    body = "Category={}".format(category)
-    return HttpResponse(body)
+def picture_detail(request,category, year=0, month=1 ):
+   body = "Category={}, year = {}, month = {}".format(category, year, month )
+   return HttpResponse(body)
 ```
 
-In `urls.py`, add the following path to the urlpatterns: path("picture/<str:category>/", v2.picture_detail)
+In `urls.py`, add the following paths to the urlpatterns: 
 
 ```python
 # mywebproject/urls.py
@@ -110,15 +110,18 @@ from appone import views
 from apptwo import views as v2
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("hello/", views.hello),
-    path("djangorocks/", v2.djangorocks),
-    path("picture/<str:category>/", v2.picture_detail),
+   path("admin/", admin.site.urls),
+   path("hello/", views.hello),
+   path("djangorocks/", v2.djangorocks),
+   path("picture/<str:category>/", v2.picture_detail),
+   path("picture/<str:category>/<int:year>/", v2.picture_detail),
+   path("picture/<str:category>/<int:year>/<int:monthr>/", v2.picture_detail)
 ]
 ```
 
 Now, go to the browser and enter the following in the search bar to see the response:
 
 [http://127.0.0.1:8000/picture/landscape/](http://127.0.0.1:8000/picture/landscape/)
+[http://127.0.0.1:8000/picture/landscape/2023](http://127.0.0.1:8000/picture/landscape//2023/)
+[http://127.0.0.1:8000/picture/landscape/2023/12](http://127.0.0.1:8000/picture/landscape/2023/12/)
 
-This will trigger the `picture_detail` view in the `apptwo` application with the specified category "landscape."

@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("hello/", views.hello),
     path("djangorocks/", v2.djangorocks),
-    path("picture/<str:category>/", v2.picture_detail)
-
+    path("picture/<str:category>/", v2.picture_detail),
+    path("picture/<str:category>/<int:year>/", v2.picture_detail),
+    path("picture/<str:category>/<int:year>/<int:monthr>/", v2.picture_detail)
 ]
