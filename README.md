@@ -84,3 +84,30 @@ Go to the browser and enter the following in the search bar to see the response:
 
 [http://127.0.0.1:8000/hello/](http://127.0.0.1:8000/hello/)
 
+## Regles de routing
+- Definir des regles de matching des paths
+- Fournir des arguments aux fonctions Python 
+- Divisier les routes par application pour les mieux gerer 
+
+add the following view to your apptwo under views.py
+   ```python
+   def picture_detail(request,category):
+    body = "Category={}".format(category)
+    return HttpResponse(body)
+   ```
+
+in urls.py add this :  path("picture/<str:category>/", v2.picture_detail) 
+   ```python
+   from appone import views
+   from apptwo import views as v2
+   
+   urlpatterns = [
+      path("admin/", admin.site.urls),
+      path("hello/", views.hello),
+      path("djangorocks/", v2.djangorocks),
+      path("picture/<str:category>/", v2.picture_detail)
+]
+   ```
+
+Go to the browser and enter the following in the search bar to see the response:
+http://127.0.0.1:8000/picture/landscape/
