@@ -214,5 +214,6 @@ urlpatterns = [
    path("apptwo/", include("apptwo.urls"))
 ]
 ```
-
+We need now to add apptwo in our url in the browser like this: 
+[http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01](http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01)
 This structure allows each app to manage its own URLs independently, providing a cleaner and more modular organization for your Django project.
