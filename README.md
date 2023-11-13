@@ -1,5 +1,10 @@
 ## Getting Started
 
+### Existing Django Apps
+
+Check out existing Django apps at [Django Packages](https://djangopackages.org/categories/apps/) to discover and integrate additional functionality into your project.
+
+
 ### Create an application in Django (appone)
 
 To create the "appone" application in your Django project, run the following command:
@@ -8,11 +13,7 @@ To create the "appone" application in your Django project, run the following com
 python manage.py startapp appone
 ```
 
-### Existing Django Apps
-
-Check out existing Django apps at [Django Packages](https://djangopackages.org/categories/apps/) to discover and integrate additional functionality into your project.
-
-## Contents of Django Appone
+## Contents of Django appone
 
 1. **apps.py:** Configuration file for the app within the project.
 
@@ -22,7 +23,7 @@ Check out existing Django apps at [Django Packages](https://djangopackages.org/c
 
 4. **admin.py:** Configuration file for the administration interface to manage models.
 
-## Adding Appone to Your Django Project
+## Adding appone to the Django project
 
 Navigate to your project directory (e.g., "mywebproject") and open the `settings.py` file. Add the following line to the `INSTALLED_APPS` section:
 "appone.apps.ApponeConfig"
