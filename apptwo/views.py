@@ -6,5 +6,5 @@ def djangorocks(request):
 
 
 def picture_detail(request,category, year=0, month=0, day=0  ):
-    body = "Category={}, year = {}, month = {}, day = {}".format(category, year, month, day )
+    body = "Category= {}, year = {}, month = {}, day = {}".format(category, year, month, day )
     return HttpResponse(body)
