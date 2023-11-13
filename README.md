@@ -120,9 +120,9 @@ urlpatterns = [
 
 Now, go to the browser and enter the following in the search bar to see the response:
 
-[http://127.0.0.1:8000/picture/landscape/](http://127.0.0.1:8000/picture/landscape/)
-[http://127.0.0.1:8000/picture/landscape/2023](http://127.0.0.1:8000/picture/landscape//2023/)
-[http://127.0.0.1:8000/picture/landscape/2023/12](http://127.0.0.1:8000/picture/landscape/2023/12/)
+- [http://127.0.0.1:8000/picture/landscape/](http://127.0.0.1:8000/picture/landscape/)
+- [http://127.0.0.1:8000/picture/landscape/2023](http://127.0.0.1:8000/picture/landscape//2023/)
+- [http://127.0.0.1:8000/picture/landscape/2023/12](http://127.0.0.1:8000/picture/landscape/2023/12/)
 
 
 ### Create Our Own Rule
