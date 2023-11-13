@@ -175,3 +175,44 @@ Check the sound:
 If we want to ensure that the provided format of the day is larger than 2 digits, an error will occur. Try this:
 
 [http://127.0.0.1:8000/picture/landscape/2023/12/001](http://127.0.0.1:8000/picture/landscape/2023/12/001)
+
+
+### Routing Each App
+
+For better organization, we can separate the URLs of each application. Create a file `urls.py` under `apptwo`. This file will contain only the things related to `apptwo`.
+
+```python
+# apptwo/urls.py
+from django.urls import path
+from django.urls import register_converter
+
+from apptwo import views as v2
+from apptwo import converters
+
+register_converter(converters.TwoDigitDayConverter, 'dd')
+
+urlpatterns = [
+    path("djangorocks/", v2.djangorocks),
+    path("picture/<str:category>/", v2.picture_detail),
+    path("picture/<str:category>/<int:year>/", v2.picture_detail),
+    path("picture/<str:category>/<int:year>/<int:month>/", v2.picture_detail),
+    path("picture/<str:category>/<int:year>/<int:month>/<dd:day>/", v2.picture_detail),
+]
+```
+
+Then, return to `urls.py` under the project `mywebproject` and update it as follows:
+
+```python
+# mywebproject/urls.py
+from django.contrib import admin
+from django.urls import path, include
+from appone import views
+
+urlpatterns = [
+   path("admin/", admin.site.urls),
+   path("hello/", views.hello),
+   path("apptwo/", include("apptwo.urls"))
+]
+```
+
+This structure allows each app to manage its own URLs independently, providing a cleaner and more modular organization for your Django project.
