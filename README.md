@@ -124,3 +124,54 @@ Now, go to the browser and enter the following in the search bar to see the resp
 [http://127.0.0.1:8000/picture/landscape/2023](http://127.0.0.1:8000/picture/landscape//2023/)
 [http://127.0.0.1:8000/picture/landscape/2023/12](http://127.0.0.1:8000/picture/landscape/2023/12/)
 
+
+### Create Our Own Rule
+
+In this paragraph, we aim to create a routing rule that allows entering the day of the month in only 2 digits. Follow these steps:
+
+1. Create `converters.py` under `apptwo`.
+2. Put the following code inside the file:
+
+    ```python
+    # apptwo/converters.py
+    class TwoDigitDayConverter:
+        regex = '[0-9]{2}'
+
+        def to_python(self, value):
+            return int(value)
+
+        def to_url(self, value):
+            return '%02d' % value
+    ```
+
+3. Update `views.py` as follows:
+
+    ```python
+    # apptwo/views.py
+    def picture_detail(request, category, year=0, month=0, day=0):
+        body = "Category={}, year={}, month={}, day={}".format(category, year, month, day)
+        return HttpResponse(body)
+    ```
+
+4. Update `urls.py` as follows:
+
+    ```python
+    # mywebproject/urls.py
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("hello/", views.hello),
+        path("djangorocks/", v2.djangorocks),
+        path("picture/<str:category>/", v2.picture_detail),
+        path("picture/<str:category>/<int:year>/", v2.picture_detail),
+        path("picture/<str:category>/<int:year>/<int:month>/", v2.picture_detail),
+        path("picture/<str:category>/<int:year>/<int:month>/<dd:day>/", v2.picture_detail),
+    ]
+    ```
+
+Check the sound:
+
+[http://127.0.0.1:8000/picture/landscape/2023/12/01](http://127.0.0.1:8000/picture/landscape/2023/12/01)
+
+If we want to ensure that the provided format of the day is larger than 2 digits, an error will occur. Try this:
+
+[http://127.0.0.1:8000/picture/landscape/2023/12/001](http://127.0.0.1:8000/picture/landscape/2023/12/001)

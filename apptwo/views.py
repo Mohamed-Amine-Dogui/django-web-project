@@ -5,6 +5,6 @@ def djangorocks(request):
     return HttpResponse('This is a Jazzy Response')
 
 
-def picture_detail(request,category, year=0, month=1 ):
-    body = "Category={}, year = {}, month = {}".format(category, year, month )
+def picture_detail(request,category, year=0, month=0, day=0  ):
+    body = "Category={}, year = {}, month = {}, day = {}".format(category, year, month, day )
     return HttpResponse(body)
