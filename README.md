@@ -1,10 +1,3 @@
-```markdown
-# Django Appone
-
-## Overview
-
-This repository contains the source code for a Django application named "appone." The application is intended to provide a foundation for building web-based projects using Django.
-
 ## Getting Started
 
 ### Create an application in Django (appone)
@@ -32,7 +25,7 @@ Check out existing Django apps at [Django Packages](https://djangopackages.org/c
 ## Adding Appone to Your Django Project
 
 Navigate to your project directory (e.g., "mywebproject") and open the `settings.py` file. Add the following line to the `INSTALLED_APPS` section:
-
+"appone.apps.ApponeConfig"
 ```python
 # Application definition
 INSTALLED_APPS = [
