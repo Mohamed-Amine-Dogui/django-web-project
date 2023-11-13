@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from appone import views
+from apptwo import views as v2
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("hello/", views.hello)
+    path("hello/", views.hello),
+    path("djangorocks/", v2.djangorocks)
+
 ]
