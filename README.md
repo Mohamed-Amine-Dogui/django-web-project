@@ -84,7 +84,6 @@ Go to the browser and enter the following in the search bar to see the response:
 
 [http://127.0.0.1:8000/hello/](http://127.0.0.1:8000/hello/)
 
-Certainly! Here's the integration of the provided paragraph in French into your README.md in English:
 
 ## Routing Rules
 
