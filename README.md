@@ -292,3 +292,103 @@ def picture_detail(request, category, year=0, month=0, day=0):
 This structure demonstrates how to create and integrate templates into your Django project, allowing for dynamic HTML generation.
 To see the change go to : 
 [http://127.0.0.1:8000/apptwo/pictures/portrait](http://127.0.0.1:8000/apptwo/pictures/portrait)
+
+
+## Assign Variables to a Template
+
+Go to `views.py` in `apptwo`, then modify the empty dictionary in the `picture_detail` function:
+
+```python
+def picture_detail(request, category, year=0, month=0, day=0):
+   template = loader.get_template('apptwo/index.html')
+   context = {
+      'title': 'This is the picture detail'
+   }
+   return HttpResponse(template.render(context, request))
+```
+
+Then, modify our file `index.html` located under: `apptwo\templates\apptwo\index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Index AppTwo</title>
+</head>
+<body>
+<h1>{{ title }}</h1>
+
+<div style="background: #ff0000;">Lorem ipsum text</div>
+
+</body>
+</html>
+```
+
+The line `<title>{{ title }}</title>` allows the use of DTL (Django Template Language), enabling the injection of variables from the view into `index.html`.
+
+To inject more context, modify `views.py` as follows:
+
+```python
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
+
+def djangorocks(request):
+   return HttpResponse('This is a Jazzy Response')
+
+
+def picture_detail(request, category, year=0, month=0, day=0):
+   template = loader.get_template('apptwo/index.html')
+
+   picture = {
+      'filename' : 'Mottorad.jpg',
+      'categories': ['color', 'landscape']
+   }
+
+   context = {
+      'title': 'This is the picture detail',
+      'category': category,
+      'year': year,
+      'month': month,
+      'day': day,
+      'picture': picture
+   }
+   return HttpResponse(template.render(context, request))
+```
+
+And modify `index.html` as follows:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Index AppTwo</title>
+</head>
+<body>
+
+{# Title block #}
+<h1>{{ title }}</h1>
+
+<div>
+   category: {{category}} <br/>
+   Year: {{year}} <br/>
+   Month: {{month}} <br/>
+   Day: {{day}} <br/>
+</div>
+
+<h2>Access variable detail</h2>
+<div>
+   filename: {{picture.filename}} <br/>
+   first category: {{ picture.categories.0 }} <br/>
+</div>
+
+</body>
+</html>
+```
+
+In the line `{{ picture.categories.0 }}`, the 0 allows accessing the first element in the list `'categories': ['color', 'landscape']` in `views.py`.
+
+To see the changes, go to:
+[http://127.0.0.1:8000/apptwo/pictures/portrait/2023/11/16/](http://127.0.0.1:8000/apptwo/pictures/portrait/2023/11/16/)

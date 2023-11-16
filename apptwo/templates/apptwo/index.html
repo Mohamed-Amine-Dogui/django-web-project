@@ -5,9 +5,22 @@
     <title>Index AppTwo</title>
 </head>
 <body>
-<h1>This is AppTwo</h1>
 
-<div style="background: #ff0000;">Lorem ipsum text</div>
+{# Title block #}
+<h1>{{ title }}</h1>
+
+<div>
+    category: {{category}} <br/>
+    Year: {{year}} <br/>
+    Month: {{month}} <br/>
+    Day: {{day}} <br/>
+</div>
+
+<h2>Access variable detail</h2>
+<div>
+    filename: {{picture.filename}} <br/>
+    first category: {{ picture.categories.0 }} <br/>
+</div>
 
 </body>
 </html>
