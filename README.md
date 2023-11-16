@@ -193,10 +193,10 @@ register_converter(converters.TwoDigitDayConverter, 'dd')
 
 urlpatterns = [
     path("djangorocks/", v2.djangorocks),
-    path("picture/<str:category>/", v2.picture_detail),
-    path("picture/<str:category>/<int:year>/", v2.picture_detail),
-    path("picture/<str:category>/<int:year>/<int:month>/", v2.picture_detail),
-    path("picture/<str:category>/<int:year>/<int:month>/<dd:day>/", v2.picture_detail),
+    path("pictures/<str:category>/", v2.picture_detail),
+    path("pictures/<str:category>/<int:year>/", v2.picture_detail),
+    path("pictures/<str:category>/<int:year>/<int:month>/", v2.picture_detail),
+    path("pictures/<str:category>/<int:year>/<int:month>/<dd:day>/", v2.picture_detail),
 ]
 ```
 
@@ -215,10 +215,80 @@ urlpatterns = [
 ]
 ```
 We need now to add apptwo in our url in the browser like this: 
-[http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01](http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01)
+[http://127.0.0.1:8000/apptwo/pictures/landscape/2023/12/01](http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01)
 This structure allows each app to manage its own URLs independently, providing a cleaner and more modular organization for your Django project.
 
-
 # Discover the Django Template
-- Modele pour gener HTML
-- DTL (Django Template Language) 
+
+- Model for generating HTML.
+- DTL (Django Template Language) -> Format variables & Reuse blocks.
+
+To create templates in Django, it happens in two parts:
+1. Template file part: It can be HTML or anything else where we write HTML code, along with DTL code to inject our Python variables.
+2. Injection part: Done on the views side (in the Django application).
+
+To ensure that a template is visible and configurable by Django, you need to check the configuration. In `mywebproject -> settings.py`, here is the template configuration for our Django project:
+
+```python
+TEMPLATES = [
+   {
+      "BACKEND": "django.template.backends.django.DjangoTemplates",
+      "DIRS": [],
+      "APP_DIRS": True,
+      "OPTIONS": {
+         "context_processors": [
+            "django.template.context_processors.debug",
+            "django.template.context_processors.request",
+            "django.contrib.auth.context_processors.auth",
+            "django.contrib.messages.context_processors.messages",
+         ],
+      },
+   },
+]
+```
+
+- `"DIRS": []`: It is the list where Django will look for our template files to load. By default, it is an empty list because Django will look for all folders named `templates` by default.
+- `"APP_DIRS": True`: With the value True, it means that Django will look for the `templates` folder inside our apps. It is recommended to separate templates by application to make them more independent.
+
+## Create Our First Template
+
+1. Go to the `apptwo` folder and create a new folder named `templates`.
+2. Inside the new `templates` folder, create a folder with the same name as your application, in our case, `apptwo`.
+3. Inside `apptwo\templates\apptwo`, create an HTML file named `index.html`.
+
+Inside the `index.html` file:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Index AppTwo</title>
+</head>
+<body>
+<h1>This is AppTwo</h1>
+
+<div style="background: #ff0000;">Lorem ipsum text</div>
+
+</body>
+</html>
+```
+
+4. Go to `views.py` and modify it as follows:
+
+```python
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
+
+def djangorocks(request):
+   return HttpResponse('This is a Jazzy Response')
+
+def picture_detail(request, category, year=0, month=0, day=0):
+   template = loader.get_template('apptwo/index.html')
+   return HttpResponse(template.render({}, request))
+```
+
+This structure demonstrates how to create and integrate templates into your Django project, allowing for dynamic HTML generation.
+To see the change go to : 
+[http://127.0.0.1:8000/apptwo/pictures/portrait](http://127.0.0.1:8000/apptwo/pictures/portrait)
