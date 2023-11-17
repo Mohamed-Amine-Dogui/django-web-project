@@ -6,7 +6,7 @@ def djangorocks(request):
     return HttpResponse('This is a Jazzy Response')
 
 
-def picture_detail(request,category, year=0, month=0, day=0  ):
+def picture_detail(request,category, year=0, month=0, day=0 ):
     template = loader.get_template('apptwo/index.html')
 
     picture = {

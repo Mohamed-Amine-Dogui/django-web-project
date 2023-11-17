@@ -392,3 +392,110 @@ In the line `{{ picture.categories.0 }}`, the 0 allows accessing the first eleme
 
 To see the changes, go to:
 [http://127.0.0.1:8000/apptwo/pictures/portrait/2023/11/16/](http://127.0.0.1:8000/apptwo/pictures/portrait/2023/11/16/)
+
+
+# Tags and Filters in Templates
+
+## Tags:
+
+Tags allow controlling the logic of the template.
+- `{% comment "bla" %} ... {% endcomment %}`
+- `{% if condition %} ... {% endif %}`
+- `{% for ... %} ... {% endfor %}`
+- The `<ul>` tag is used to create an unordered list, e.g.:
+   - Banana
+   - Orange
+   - Apple
+- The `<ol>` tag is used to create an ordered list, e.g.:
+   1. Chapter 1
+   2. Chapter 2
+   3. Chapter 3
+- The <li> tag is used to represent an item in a list. It must be contained in a parent element, such as an ordered list ( <ol> ), an unordered list ( <ul> ), or a menu ( <menu> ). In menus and unordered lists, list items are usually displayed with bullet points.
+- The `<table>` tag defines an HTML table. It is the container for all the other table elements.
+- The `<tr>` tag defines a table row. It is a child element of the `<table>` tag. Each `<tr>` element creates a new row in the table
+- The `<td>` tag defines a table data cell. It is a child element of the `<tr>` tag, and can contain any content, such as text, images, links, etc. Each `<td>` element creates a new cell in the current row of the table.
+- The `<th>` tag defines a table header cell. It is similar to the `<td>` tag, but it is used to indicate that the cell contains a header or label for a column or a row.
+
+## Filters
+
+Filters modify a variable before its display.
+- `{{name|length %}` -> length of the variable `name`
+- `{{name|default %}` -> empty only if `name` is empty
+- `{{name|lower|truncatewords : 5 %}` -> display the content of `name` in lowercase and only the first 5 characters.
+- The `join` filter joins items in an iterable into one string using a specified separator, e.g., `{{ picture.categories|join:', ' }}`.
+
+## Practice
+
+Modify `index.html` as follows:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Index AppTwo</title>
+</head>
+<body>
+
+{# Title block #}
+<h1>{{ title|title }}</h1>
+
+<div>
+   category: {{category}} <br/>
+   Year: {{year}} <br/>
+   Month: {{month}} <br/>
+   Day: {{day}} <br/>
+</div>
+
+<h2>Access variable detail</h2>
+<div>
+   filename: {{picture.filename}} <br/>
+   all categories:
+   <ul>
+      {% for category in picture.categories %}
+      <li>{{ category }}</li>
+      {% endfor %}
+   </ul>
+
+   all categories with filter:  {{ picture.categories|join:', ' }}
+</div>
+
+<h3>Picture table detail</h3>
+{# Table block #}
+
+<table>
+   <tr style="background-color: {% cycle '#808080' '#d3d3d3' as rowcolors %}">
+      <td>Resolution</td>
+      <td>1920x1080</td>
+   </tr>
+   <tr style="background-color: {% cycle rowcolors %}">
+      <td>Location</td>
+      <td>Bizerte</td>
+   </tr>
+   <tr style="background-color: {% cycle rowcolors %}">
+      <td>Filter</td>
+      <td>No</td>
+   </tr>
+</table>
+
+{% if day == 13 and month == 07 %}
+<h3>Happy Birth Day !</h3>
+
+{% elif day == 19 %}
+<h3>Money is there !</h3>
+
+{% else %}
+<h4>Nothing fancy</h4>
+{% endif %}
+
+</body>
+</html>
+```
+
+- The `<tr>` tag creates a row, and the `style` attribute changes its appearance.
+- The `{% cycle '#808080' '#d3d3d3' as rowcolors %}` tag alternates between dark and light grey colors, naming the cycle `rowcolors`.
+- The `{% cycle rowcolors %}` tag repeats the same cycle without specifying the arguments again.
+- The rows have different colors in a striped pattern.
+
+To see the changes, go to:
+[http://127.0.0.1:8000/apptwo/pictures/portrait/2023/07/13/](http://127.0.0.1:8000/apptwo/pictures/portrait/2023/07/13/)

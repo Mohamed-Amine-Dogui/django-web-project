@@ -7,7 +7,7 @@
 <body>
 
 {# Title block #}
-<h1>{{ title }}</h1>
+<h1>{{ title|title }}</h1>
 
 <div>
     category: {{category}} <br/>
@@ -19,8 +19,43 @@
 <h2>Access variable detail</h2>
 <div>
     filename: {{picture.filename}} <br/>
-    first category: {{ picture.categories.0 }} <br/>
+    all categories:
+    <ul>
+        {% for category in picture.categories %}
+        <li>{{ category }}</li>
+        {% endfor %}
+    </ul>
+
+    all categories with filter:  {{ picture.categories|join:', ' }}
 </div>
+
+<h3>Picture table detail</h3>
+{# Table block #}
+
+<table>
+    <tr style="background-color: {% cycle '#808080' '#d3d3d3' as rowcolors %}">
+        <td>Resolution</td>
+        <td>1920x1080</td>
+    </tr>
+    <tr style="background-color: {% cycle rowcolors %}">
+        <td>Location</td>
+        <td>Bizerte</td>
+    </tr>
+    <tr style="background-color: {% cycle rowcolors %}">
+        <td>Filter</td>
+        <td>No</td>
+    </tr>
+</table>
+
+{% if day == 13 and month == 07 %}
+<h3>Happy Birth Day !</h3>
+
+{% elif day == 19 %}
+<h3>Money is there !</h3>
+
+{% else %}
+<h4>Nothing fancy</h4>
+{% endif %}
 
 </body>
 </html>
