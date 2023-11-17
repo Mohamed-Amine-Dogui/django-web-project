@@ -80,7 +80,7 @@ Our request handling is divided into two parts:
    ]
    ```
 
-## Launch the Web Server
+## Launch the web server
 
 To run the web server, execute the following command:
 
@@ -93,12 +93,18 @@ Go to the browser and enter the following in the search bar to see the response:
 [http://127.0.0.1:8000/hello/](http://127.0.0.1:8000/hello/)
 
 
-## Routing Rules
+## Routing rules
 
 Routing rules in Django involve defining matching rules for paths, 
 providing arguments to Python functions, and organizing routes by application for better management.
 
-Add the following view to your `apptwo` under `views.py`:
+1. Create a second application package in Django:  run the following command:
+
+```bash
+python manage.py startapp apptwo
+```
+
+2. Add the following view to your `apptwo` under `views.py`:
 
 ```python
 # apptwo/views.py
@@ -133,7 +139,7 @@ Now, go to the browser and enter the following in the search bar to see the resp
 - [http://127.0.0.1:8000/picture/landscape/2023/12](http://127.0.0.1:8000/picture/landscape/2023/12/)
 
 
-### Create Our Own Rule
+### Create our own rule
 
 In this paragraph, we aim to create a routing rule that allows entering the day of the month in only 2 digits. Follow these steps:
 
@@ -185,7 +191,7 @@ If we want to ensure that the provided format of the day is larger than 2 digits
 [http://127.0.0.1:8000/picture/landscape/2023/12/001](http://127.0.0.1:8000/picture/landscape/2023/12/001)
 
 
-### Routing Each App
+### Routing each App
 
 For better organization, we can separate the URLs of each application. Create a file `urls.py` under `apptwo`. This file will contain only the things related to `apptwo`.
 
@@ -226,7 +232,7 @@ We need now to add apptwo in our url in the browser like this:
 [http://127.0.0.1:8000/apptwo/pictures/landscape/2023/12/01](http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01)
 This structure allows each app to manage its own URLs independently, providing a cleaner and more modular organization for your Django project.
 
-# Django Template
+# Django template
 
 - Model for generating HTML.
 - DTL (Django Template Language) -> Format variables & Reuse blocks.
@@ -258,7 +264,7 @@ TEMPLATES = [
 - `"DIRS": []`: It is the list where Django will look for our template files to load. By default, it is an empty list because Django will look for all folders named `templates` by default.
 - `"APP_DIRS": True`: With the value True, it means that Django will look for the `templates` folder inside our apps. It is recommended to separate templates by application to make them more independent.
 
-## Create Our First Template
+## Create our first template
 
 1. Go to the `apptwo` folder and create a new folder named `templates`.
 2. Inside the new `templates` folder, create a folder with the same name as your application, in our case, `apptwo`.
@@ -302,7 +308,7 @@ To see the change go to :
 [http://127.0.0.1:8000/apptwo/pictures/portrait](http://127.0.0.1:8000/apptwo/pictures/portrait)
 
 
-## Assign Variables to a Template
+## Assign variables to a template
 
 Go to `views.py` in `apptwo`, then modify the empty dictionary in the `picture_detail` function:
 
@@ -402,7 +408,7 @@ To see the changes, go to:
 [http://127.0.0.1:8000/apptwo/pictures/portrait/2023/11/16/](http://127.0.0.1:8000/apptwo/pictures/portrait/2023/11/16/)
 
 
-# Tags and Filters in Templates
+# Tags and filters in templates
 
 ## Tags:
 
