@@ -410,7 +410,7 @@ Tags allow controlling the logic of the template.
    1. Chapter 1
    2. Chapter 2
    3. Chapter 3
-- The <li> tag is used to represent an item in a list. It must be contained in a parent element, such as an ordered list ( <ol> ), an unordered list ( <ul> ), or a menu ( <menu> ). In menus and unordered lists, list items are usually displayed with bullet points.
+- The `<li>` tag is used to represent an item in a list. It must be contained in a parent element, such as an ordered list ( <ol> ), an unordered list ( <ul> ), or a menu ( <menu> ). In menus and unordered lists, list items are usually displayed with bullet points.
 - The `<table>` tag defines an HTML table. It is the container for all the other table elements.
 - The `<tr>` tag defines a table row. It is a child element of the `<table>` tag. Each `<tr>` element creates a new row in the table
 - The `<td>` tag defines a table data cell. It is a child element of the `<tr>` tag, and can contain any content, such as text, images, links, etc. Each `<td>` element creates a new cell in the current row of the table.
