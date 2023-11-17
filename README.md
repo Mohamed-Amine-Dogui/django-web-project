@@ -1,4 +1,4 @@
-## Getting Started
+# Getting Started
 
 ### Existing Django Apps
 
@@ -13,7 +13,7 @@ To create the "appone" package in your Django project, run the following command
 python manage.py startapp appone
 ```
 
-## Contents of Django package (appone)
+### Contents of Django package (appone)
 
 1. **apps.py:** Configuration file for the app within the project.
 
@@ -23,7 +23,7 @@ python manage.py startapp appone
 
 4. **admin.py:** Configuration file for the administration interface to manage models.
 
-## Adding the application of the package to the Django project
+### Adding the application of the package to the Django project
 
 Navigate to your project directory (e.g., "mywebproject") and open the `settings.py` file. Add the following line to the `INSTALLED_APPS` section:
 "appone.apps.ApponeConfig"
@@ -44,7 +44,7 @@ With this reference our project mywebproject recognize appone
 
 Certainly! Here's the integration of the provided paragraph in French into your README.md in English:
 
-## Routing
+# Routing
 
 Routing in Django involves deciding which function will handle an incoming HTTP request and, consequently, be responsible for generating the response. In the context of Django, this is defined in the `urls.py` file.
 
@@ -218,7 +218,7 @@ We need now to add apptwo in our url in the browser like this:
 [http://127.0.0.1:8000/apptwo/pictures/landscape/2023/12/01](http://127.0.0.1:8000/apptwo/picture/landscape/2023/12/01)
 This structure allows each app to manage its own URLs independently, providing a cleaner and more modular organization for your Django project.
 
-# Discover the Django Template
+# Django Template
 
 - Model for generating HTML.
 - DTL (Django Template Language) -> Format variables & Reuse blocks.
@@ -499,3 +499,6 @@ Modify `index.html` as follows:
 
 To see the changes, go to:
 [http://127.0.0.1:8000/apptwo/pictures/portrait/2023/07/13/](http://127.0.0.1:8000/apptwo/pictures/portrait/2023/07/13/)
+
+
+# Template et heritage:
