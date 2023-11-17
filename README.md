@@ -1,11 +1,19 @@
 # Getting Started
 
+### Create a Django project
+
+To create a Django project called `mywebproject` inside the actual dir, run the following command: 
+
+```bash
+django-admin startproject mywebproject .
+```
+
 ### Existing Django Apps
 
 Check out existing Django apps at [Django Packages](https://djangopackages.org/categories/apps/) to discover and integrate additional functionality into your project.
 
 
-### Create a package in Django (appone)
+### Create an application package in Django (appone)
 
 To create the "appone" package in your Django project, run the following command:
 
@@ -23,7 +31,7 @@ python manage.py startapp appone
 
 4. **admin.py:** Configuration file for the administration interface to manage models.
 
-### Adding the application of the package to the Django project
+### Adding the application package to the Django project
 
 Navigate to your project directory (e.g., "mywebproject") and open the `settings.py` file. Add the following line to the `INSTALLED_APPS` section:
 "appone.apps.ApponeConfig"
