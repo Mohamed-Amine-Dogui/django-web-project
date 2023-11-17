@@ -422,7 +422,7 @@ Filters modify a variable before its display.
 - `{{name|length %}` -> length of the variable `name`
 - `{{name|default %}` -> empty only if `name` is empty
 - `{{name|lower|truncatewords : 5 %}` -> display the content of `name` in lowercase and only the first 5 characters.
-- The `join` filter joins items in an iterable into one string using a specified separator, e.g., `{{ picture.categories|join:', ' }}`.
+- The `join` filter joins items in an iterable into one string using a specified separator, e.g., `{{ picture.categories|join:', ' }}`. For example, if you have a list of categories, such as `['art', 'nature', 'animals']`, and you want to display them as a comma-separated string, you can use the join filter like this: `{{ picture.categories|join:', ' }}`. This will output `art, nature, animals`.
 
 ## Practice
 
